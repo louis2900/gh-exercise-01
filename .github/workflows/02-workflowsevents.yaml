@@ -3,10 +3,10 @@ name: 02 - Workflow Events
 on: push
 
 jobs:
-    echo:
-      runs-on: ubuntu-latest
-      steps:
-      - name: show the trigger
-        run: echo ${{toJSON(github.trigger)}}
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show the trigger
+        run: echo "${{ github.event_name }}"
 
 
