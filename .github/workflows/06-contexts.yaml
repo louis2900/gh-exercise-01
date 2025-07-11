@@ -1,7 +1,7 @@
 name: 06 - Contexts
 
 on:
-    push:
+    #push:
     workflow_dispatch:
         inputs:
           debug:
@@ -42,5 +42,5 @@ jobs:
                echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
             - name: Print Env Variables
               run: |
-               echo "workflow env ${{env.MY_WORKFLOW_VAR}}"
-               echo "workflow env ${{env.MY_OVERWRITTEN_VAR}}"
+               echo "workflow env: ${{env.MY_WORKFLOW_VAR}}"
+               echo "workflow env: ${{env.MY_OVERWRITTEN_VAR}}"
