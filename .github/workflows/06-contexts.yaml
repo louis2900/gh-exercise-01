@@ -11,8 +11,15 @@ on:
 
 run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
 
+env:
+    MY_WORKFLOW_VAR: 'workflow'
+    MY_OVERWRITTEN_VAR: 'workflow'
+
 jobs:
     echo-data:
+        env:
+            MY_JOB_VAR: 'job'
+            MY_OVERWRITTEN_VAR: 'job'
         runs-on: ubuntu-latest
         steps:
             - name: echo-data
@@ -27,3 +34,13 @@ jobs:
             - name: retrieve Variable
               run: |
                 echo "Variable value: ${{vars.MY_VAR}}"
+            - name: Print Env variables
+              env:
+                MY_OVERWRITTEN_VAR: 'steps'
+              run: |
+               echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+               echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
+            - name: Print Env Variables
+              run: |
+               echo "workflow env ${{env.MY_WORKFLOW_VAR}}"
+               echo "workflow env ${{env.MY_OVERWRITTEN_VAR}}"
