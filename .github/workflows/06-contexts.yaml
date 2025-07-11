@@ -10,7 +10,7 @@ jobs:
         steps:
             - name: echo-data
               run: |
-               echo "Event name: ${{github.event_name}}
+               echo "Event name: ${{github.event_name}}"
                echo "Ref: ${{github.ref}}"
                echo "SHA: ${{github.sha}}"
                echo "Actor: ${{github.actor}}"
