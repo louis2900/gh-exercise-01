@@ -10,13 +10,13 @@ jobs:
         steps:
             - name: echo-data
               run: |
-               echo "Event name: ${{toJson(github.event_name) }}
-               echo "Ref: ${{toJson(github.ref)}}"
-               echo "SHA: ${{toJson(github.sha)}}"
-               echo "Actor: ${{toJson(github.actor)}}"
-               echo "workflow: ${{toJson(github.workflow)}}"
-               echo "Run ID: ${{toJson(github.run_id)}}"
-               echo "Run nummber: ${{toJson(github.run_number)}}"
+               echo "Event name: ${{github.event_name }}
+               echo "Ref: ${{github.ref}}"
+               echo "SHA: ${{github.sha}}"
+               echo "Actor: ${{github.actor}}"
+               echo "workflow: ${{github.workflow}}"
+               echo "Run ID: ${{github.run_id}}"
+               echo "Run nummber: ${{github.run_number}}"
             - name: retrieve Variable
               run: |
                 echo "Variable value: ${{ vars.MY_VAR }}"
