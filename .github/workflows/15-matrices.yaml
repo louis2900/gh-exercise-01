@@ -1,0 +1,51 @@
+name: 15 - Working with matries
+
+on: 
+    workflow_dispatch:
+
+jobs:
+    backwards-compatibility:
+      runs-on: ${{matrix.os}}
+      strategy:
+        fail-fast: false
+        matrix:
+          version: [18.x, 20.x, 21.x]
+          os: [ubuntu-latest, window-latest]
+          include:
+            - version: 16.x
+              os: ubuntu-latest
+              tag: experimental
+              
+            
+      steps:
+        - name: Setup node
+          uses: actions/setup-node@V4
+          with: 
+             node-version:${{matrix.version}}
+        - name: Fail if experimental
+          if: matrix.tag == 'experimental'
+          run: exit 0
+
+        - name: perform some tests
+          run: |
+           sleep: 10
+           echo "Running tests on OS ${{matrix.os}} and NodeJS ${{matrix.version}}"
+    include-example:
+        name: ${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                color: [red, green]
+                shape: [circle, square]
+                size: [small, large]
+                include:
+                    - color: red
+                      shape: triangle
+                exclude:  
+                   - color: green
+                     shape: circle
+        steps:
+            - name: Dummy steps
+              run: echo "${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}"
+
+     
