@@ -16,7 +16,7 @@ jobs:
       - name: Show OS
         shell: bash
         run: |
-          echo "this step runs on Windows-latest
+          echo "this step runs on Windows-latest"
           echo "Runner: ${{ runner.os}}"
   macos-job:
     name: macos-echo
