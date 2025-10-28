@@ -1,0 +1,11 @@
+name: 04 - Using Actions
+on: push
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: Actions/checkout@v4
+            - name: print workiing directory
+              run: ls
