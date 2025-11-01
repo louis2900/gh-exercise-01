@@ -1,41 +1,25 @@
-name: 09 - Using Functions
-
-on: 
-    ## pull_request:
-    workflow_dispatch:
+name: 09 - functions
+on:
+  workflow_dispatch:
+  pull_request:
 jobs:
-    echo1:
-        runs-on: ubuntu-latest
-        steps:
-          - name: print pr title
-            run: echo "${{github.event.pull_request.title}}"
-          - name: Print PR labels
-            run: |
-              cat << EOF
-              ${{toJson(github.event.pull_request.labels)}}
-              EOF
-          - name: bug step
-            if: ${{ !cancelled() && contains(github.event.pull_request.title, 'fix')}}
-            run: |
-             echo "I am a bug fix"
-          #- name: slep for 20 sec
-           # run: sleep 20
-         # - name: Failing step
-         #   run: exit 0 
-          - name: I will be skipped
-            if: ${{success()}}
-            run: |
-             echo "I print if previoes steps succed"
-          - name: I will execute 
-            if: ${{failure()}}
-            run: |
-             echo "I will print if any previous step fails."
-          - name: I will execute
-            if: ${{ !cancelled()}}
-            run: |
-             echo "I will always print, except when the is cancelled."
-          - name: I will execute when cancelled
-            if: ${{ !cancelled()}}
-            run: |
-             echo "I will print if the workload has been cancelled."
+  echo1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: failing step
+        run: exit 1
+      - name: will be skipped
+        if: success()
+        run: echo "I will print if any previous step success."
+      - name: I will execute
+        if: failure()
+        run: echo "I will print if any previous step failure."
+      - name: I will execute
+        if: cancelled() == false
+        run: echo ""I will always print, except when the workflow is cancelled"
+      - name: I will execute when cancelled
+        if: cancelled() == true
+        run: echo "I will print if the workflow is cancelled."
+      
+
              
