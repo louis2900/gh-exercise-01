@@ -1,7 +1,7 @@
-name: 08 - veriables
+name: 08 - variables
 on: 
   workflow_dispatch:
-  push:
+  # push:
 env:
   WORKFLOW_VAR: 'I am a workflow env'
   OVERWRITTEN_VAR: 'I will be overwritten'
@@ -41,5 +41,5 @@ jobs:
       - name: Print Prod Variable
         run: |
           echo "prod env var: ${{ env.TARGET_VAR}}"
-       
+
     
