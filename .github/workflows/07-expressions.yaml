@@ -1,28 +1,27 @@
-name: 07 - Using expressions
-
-on:
-    #push:
-    workflow_dispatch:
-        inputs:
-            debug: 
-                description: "for debugging"
-                type: boolean
-                default: false
+name: 07 -Using Expressions
+on: 
+  push:
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: "for debuging"
+        type: boolean
+        default: false
 jobs:
-    echo:
-        runs-on: ubuntu-latest
-        steps:
-           - name: "[debug] print start-up data"
-             if:  ${{inputs.debug}}
-             run: |
-              echo " Triggered by: ${{github.event_name}}"
-              echo " Branch: ${{github.ref}}"
-              echo " Commit SHA: ${{github.sha}}"
-              echo "Runner OS: ${{runner.os}}"
-           - name: Print when triggered from main
-             if: ${{inputs.debug && github.ref == 'refs/heads/main'}}
-             run: |
-              echo "I was triggered from main"
-           - name: Greeting
-             run: |
-              echo "Hello, world"
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: debug - print start-up data
+        if: ${{ inputs.debug == true }}
+        run: |
+          echo "Event name: ${{github.event_name}}"
+          echo "branch: $ {{github.ref}}"
+          echo "SHA: ${{github.sha}}"
+          echo "Runner OS: ${{runner.os}}"
+    
+      - name: debug - print when triggered on main
+        if: ${{ github.ref == 'refs/heasds/main' && inputs.debug == true}}
+        run: echo "I was triggered from main"
+      
+      - name: Greeting 
+        run: echo " hello world"
