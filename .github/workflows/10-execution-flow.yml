@@ -26,7 +26,7 @@ jobs:
     needs: [lint-build, unit-tests]
     steps:
       - name: deploy to non-prod
-        run: echo "Deploying to non-production environment
+        run: echo "Deploying to non-production environment"
  e2e-tests:
     runs-on: ubuntu-latest
     needs: deploy-nonprod
