@@ -1,32 +1,29 @@
-name: 08 - Using Variables
-
+name: 08 - veriables
 on: 
-  # push:
   workflow_dispatch:
-
+  push:
 env:
-  WORKFLOW_VAR: 'I am a workflow'
-  OVERWRITTEN: 'I will be overwritten'
-
+  WORKFLOW_VAR: 'I am a workflow env'
+  OVERWRITTEN_VAR: 'I will be overwritten'
 jobs:
-    echo:
-        runs-on: ubuntu-latest
+  echo:
+    runs-on: ubuntu-latest
+    env:
+      JOB_VAR: 'I am a job env'
+      OVERWRITTEN_VAR: 'I have been overwritten at the job level'
+    steps:
+      - name: Print env variables
         env:
-          JOB_VAR: 'I am a job env var'
-          OVERWRITTEN: 'I have been overwritten at the job level'
-        steps:
-          - name: Print Env Variables
-            env:
-              STEP_VAR: 'I am a step env var'
-              STEP_VAR2: 'I am another step var'
-              OVERWRITTEN: 'I have been overwritten at the step level'
-            run: |
-              echo "Step env var: ${{env.STEP_VAR}}"
-              echo "Step env var 2: $STEP_VAR2"
-              echo "Job env var: $JOB_VAR"
-              echo "Workflow env var: $WORKFLOW_VAR"
-              echo "Overwritten: $OVERWRITTEN"
-    
-          - name: Overwrite_Job_Variable
-            run: |
-              echo "Step env var: $OVERWRITTEN"
+          step_var: 'I am a step env'
+          step_var_2: 'I am another step env'
+        run: |
+          echo "step env var: $step_var"
+          echo "steo env var 2: $step_var_2"
+          echo "job env var: $JOB_VAR"
+          echo "Workflow env var: $WORKFLOW_VAR"
+          echo "Overwritten var: $OVERWRITTEN_VAR"
+      - name: Overwrite Job Variable
+        env:
+          OVERWRITTEN_VAR: 'I have been overwritten at the step level'
+        run: |
+          echo "step env var: $OVERWRITTEN_VAR"  
