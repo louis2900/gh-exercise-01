@@ -17,7 +17,7 @@ jobs:
     outputs: ${{steps.build.outcome.output1}}
    steps:
       - name: Print GITHUB_OUTPUT path
-        run: "$GITHUB_OUTPUT"
+        run: echo "$GITHUB_OUTPUT"
       - name: Build
         id: build
         run: | 
