@@ -19,7 +19,13 @@ jobs:
         run: "$GITHUB_OUTPUT"
       - name: Build
         id: build
-        run: echo"status=${{inputs.build-status}}" >> "$GITHUB_OUTPUT"
+        run: | 
+          echo"status=${{inputs.build-status}}" >> "$GITHUB_OUTPUT"
+          echo"output1=value1" >> "GITHUB_OUTPUT"
+          echo"output2=value2" >> "GITHUB_OUTPUT"
+          echo ${{steps.build.output1}}
+          echo ${{steps.build.GITHUB_OUTPUT}}
+          echo "mistake=true" > "$GITHUB_OUTPUT"
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -27,5 +33,10 @@ jobs:
     steps:
       - name: deploy
         run: echo "deploying..."
+      - name: Print Outputs
+        run: |
+            echo ${{steps.build.output1}}
+
+
 
 
