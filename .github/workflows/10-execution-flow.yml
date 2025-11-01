@@ -5,7 +5,7 @@ on:
       pass-unit-tests:
         description: "have the unit tests passed?"
         type: boolean
-        default: false
+        default: true
 jobs: 
  lint-build:
   runs-on: ubuntu-latest
