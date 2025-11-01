@@ -5,7 +5,7 @@ on:
       dry-run:
         description: 'Set to true to do a dry run'
         type: boolean
-        default: false
+        default: true
       target:
         description: 'Deployment target environment'
         type: environment
