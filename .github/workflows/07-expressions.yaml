@@ -15,7 +15,7 @@ jobs:
         if: ${{ inputs.debug == true }}
         run: |
           echo "Event name: ${{github.event_name}}"
-          echo "branch: $ {{github.ref}}"
+          echo "branch: ${{github.ref}}"
           echo "SHA: ${{github.sha}}"
           echo "Runner OS: ${{runner.os}}"
     
