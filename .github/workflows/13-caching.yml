@@ -35,7 +35,7 @@ jobs:
           if: ${{inputs.use-cache == true}}
           id: cache
           with:
-            path: node_modules
+            path: 13-caching-actions/react-app/node_modules
             key: deps-node-module-${{hashFiles('13-caching-actions/react-app/package-lock.json')}}
         - name: Cache status
           run: echo "Cache hit:" ${{ steps.cache.outputs.cache-hit }}
